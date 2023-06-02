@@ -7,7 +7,7 @@ def main():
     data = sys.argv[3]
     print(author, message)
     print(type(data))
-    print(data)
+    print(vars(data))
 
 
 if __name__ == "__main__":
