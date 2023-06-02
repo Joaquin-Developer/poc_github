@@ -6,8 +6,9 @@ def main():
 
     for file in modified_files:
         print(file)
-
-    print("Hellooo")
+    
+    print("Hi")
+    print(len(modified_files))
 
 if __name__ == "__main__":
     main()
