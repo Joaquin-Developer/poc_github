@@ -20,7 +20,7 @@ jobs:
       - name: Obtener archivos modificados
         id: get-modified-files
         run: |
-          echo "${{ needs.filesChanged.outputs.all_changed_files }}"" >> $GITHUB_OUTPUT
+          echo "${{ needs.filesChanged.outputs.all_changed_files }}" >> $GITHUB_OUTPUT
           echo boolean_output=${{ needs.filesChanged.outputs.boolean_output }}
 
       - name: Ejecutar script Python
