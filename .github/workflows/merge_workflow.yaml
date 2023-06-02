@@ -12,12 +12,6 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v2
 
-      - name: Obtener detalles del commit
-        id: commit-details
-        run: |
-          echo "::set-output name=commit-author::$(git show -s --format='%an' ${{ github.sha }})"
-          echo "::set-output name=commit-message::$(git show -s --format='%s' ${{ github.sha }})"
-
       - name: Obtener archivos modificados
         id: modified-files
         run: |
