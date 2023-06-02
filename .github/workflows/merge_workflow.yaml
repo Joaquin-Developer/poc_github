@@ -6,8 +6,13 @@ on:
       - master
 
 jobs:
+  filesChanged:
+    uses: ./.github/workflows/files_changed.yaml
+    with:
+      folder_path: .*
   merge-job:
     runs-on: ubuntu-latest
+    needs: filesChanged
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v2
@@ -17,12 +22,10 @@ jobs:
         run: | 
           echo "files=$(git --no-pager diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
       
-      - name: Echo variable
-        id: echo-var
+      - name: echo all changed files
         run: |
           echo ${{ needs.filesChanged.outputs.all_changed_files }} 
           echo boolean_output=${{ needs.filesChanged.outputs.boolean_output }} 
-          echo $GITHUB_OUTPUT
 
       - name: Ejecutar script Python
         run: python -u workflow.py $GITHUB_OUTPUT
