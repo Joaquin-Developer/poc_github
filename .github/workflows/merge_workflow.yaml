@@ -19,7 +19,10 @@ jobs:
       
       - name: Echo variable
         id: echo-var
-        run: echo $GITHUB_OUTPUT
+        run: |
+          echo ${{ needs.filesChanged.outputs.all_changed_files }} 
+          echo boolean_output=${{ needs.filesChanged.outputs.boolean_output }} 
+          echo $GITHUB_OUTPUT
 
       - name: Ejecutar script Python
         run: python -u workflow.py $GITHUB_OUTPUT
