@@ -14,8 +14,8 @@ jobs:
 
       - name: Obtener archivos modificados
         id: modified-files
-        run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
-        # run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})"
+        run: echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
+        # run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
 
       - name: Ejecutar script Python
-        run: python -u workflow.py ${{ steps.modified-files.outputs.files }}
+        run: python -u workflow.py $GITHUB_OUTPUT
