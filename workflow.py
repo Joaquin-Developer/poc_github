@@ -2,7 +2,9 @@ import sys
 
 
 def main():
-    modified_files = sys.argv[1:]
+    modified_files = sys.argv[1]
+
+    print(modified_files)
 
     for file in modified_files:
         print(file)
