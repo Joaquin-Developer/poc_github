@@ -18,5 +18,10 @@ jobs:
           echo "::set-output name=commit-author::$(git show -s --format='%an' ${{ github.sha }})"
           echo "::set-output name=commit-message::$(git show -s --format='%s' ${{ github.sha }})"
 
+      - name: Obtener archivos modificados
+        id: modified-files
+        run: |
+          echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})"
+
       - name: Ejecutar script Python
-        run: python workflow.py ${{ steps.commit-details.outputs.commit-author }} ${{ steps.commit-details.outputs.commit-message }} ${{ steps.commit-details }}
+        run: python workflow.py ${{ steps.commit-details.outputs.commit-author }} ${{ steps.commit-details.outputs.commit-message }} ${{ steps.modified-files.outputs.files }}
