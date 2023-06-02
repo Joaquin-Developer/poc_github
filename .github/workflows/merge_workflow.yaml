@@ -1,0 +1,22 @@
+name: test1
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  merge-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v2
+
+      - name: Obtener detalles del commit
+        id: commit-details
+        run: |
+          echo "::set-output name=commit-author::$(git show -s --format='%an' ${{ github.sha }})"
+          echo "::set-output name=commit-message::$(git show -s --format='%s' ${{ github.sha }})"
+
+      - name: Ejecutar script Python
+        run: python workflow.py ${{ steps.commit-details.outputs.commit-author }} ${{ steps.commit-details.outputs.commit-message }}
