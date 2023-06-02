@@ -6,9 +6,12 @@ def main():
     message = sys.argv[2]
     modified_files = sys.argv[3]
 
+    modified_files = sys.argv[3:]
 
     print(author, message)
-    print(modified_files)
+
+    for file in modified_files:
+        print(file)
 
 
 if __name__ == "__main__":
