@@ -19,4 +19,4 @@ jobs:
           echo "::set-output name=commit-message::$(git show -s --format='%s' ${{ github.sha }})"
 
       - name: Ejecutar script Python
-        run: python workflow.py ${{ steps.commit-details.outputs.commit-author }} ${{ steps.commit-details.outputs.commit-message }}
+        run: python workflow.py ${{ steps.commit-details.outputs.commit-author }} ${{ steps.commit-details.outputs.commit-message }} ${{ steps.commit-details }}
