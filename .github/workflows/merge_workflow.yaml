@@ -16,6 +16,10 @@ jobs:
         id: modified-files
         run: echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})" >> $GITHUB_OUTPUT
         # run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+      
+      -name: Echo variable
+        id: echo-var
+        run: echo $GITHUB_OUTPUT
 
       - name: Ejecutar script Python
         run: python -u workflow.py $GITHUB_OUTPUT
