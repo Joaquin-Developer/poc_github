@@ -15,11 +15,7 @@ jobs:
       - name: Obtener archivos modificados
         id: modified-files
         run: | 
-          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.sha }})" >> $GITHUB_OUTPUT
-          echo ${{ github.sha }} - commit sha that triggered this workflow
-          echo ${{ github.event.before }} - previous sha
-          git --no-pager diff --name-only ${{ github.sha }} ${{ github.event.before }}
-        # run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+          echo "files=$(git --no-pager diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
       
       - name: Echo variable
         id: echo-var
