@@ -1,12 +1,13 @@
 import sys
 
 
-# def main():
-modified_files = sys.argv[1:]
+def main():
+    modified_files = sys.argv[1:]
 
-for file in modified_files:
-    print(file)
+    for file in modified_files:
+        print(file)
 
+    print("Hellooo")
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
